@@ -28,7 +28,7 @@ let baseMaps = {
 
   // Create a map object with center and zoom level
 let map = L.map('mapid', {
-    center: [30, 30],
+    center: [44.0, -80.0],
     zoom: 4,
     layers: [light]
 });
