@@ -46,7 +46,8 @@ let torontoHoods = "https://raw.githubusercontent.com/whwilson53/Mapping_Earthqu
 
 // Create a style for the lines.
 let myStyle = {
-  color: "#ffffa1",
+  linecolor: "#ffffa1",
+  fillColor:"#f3ff33",
   weight: 2
 }
 
@@ -55,7 +56,12 @@ let myStyle = {
 d3.json(torontoHoods).then(function(data) {
     console.log(data);
   // Creating a GeoJSON layer with the retrieved data.
-  L.geoJSON(data).addTo(map);
+  L.geoJSON(data, {
+    style: myStyle,
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup("<h3> Neighborhood: " + feature.properties.AREA_NAME + "</h3> <hr><h3> Destination: " + feature.properties.dst + "</h3>");
+    }
+  }).addTo(map);
 });
 
 
